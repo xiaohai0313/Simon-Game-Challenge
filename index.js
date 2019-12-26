@@ -3,6 +3,7 @@ var gamePattern = [];
 var userClickedPattern = [];
 var level = 0;
 var started = false;
+var highest_score = 0;
 
 function nextSequnce(){
     level += 1;
@@ -26,6 +27,7 @@ $(".btn").click(function(){
 function check_answer(curlevel){
 
     if (userClickedPattern[curlevel] != gamePattern[curlevel]){
+        highest_score = Math.max(highest_score,gamePattern.length - 1) ;
         start_over();
     }
     else{
@@ -69,6 +71,7 @@ function start_over(){
     level = 0;
     gamePattern = [];
     userClickedPattern = [];
-    $("h1").html("Game Over, Press Any Key to Restart");
+    $("h1").html("Game Over, Highest Score is: " + highest_score + " Press Any Key to Restart");
+    //$("h1").width("60%");
     playSound("wrong");
 }
